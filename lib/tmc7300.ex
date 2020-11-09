@@ -139,7 +139,7 @@ defmodule TMC7300 do
   end
 
   def handle_call({:current_limit, motorrun, irun}, _from, state) do
-    case write(@current_limit, <<0, 0, irun :: 4, 0 :: 4, motorrun :: 1, 0 :: 7>>, state) do
+    case write(@current_limit, <<0 :: 20, irun :: 4,  0 :: 7, motorrun :: 1>>, state) do
       {:ok, state} ->
         {:reply, :ok, state}
       error ->
